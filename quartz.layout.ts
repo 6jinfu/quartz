@@ -4,16 +4,18 @@ import { FileTrieNode } from "./quartz/util/fileTrie"
 
 const docsSort = (a: FileTrieNode, b: FileTrieNode) => {
   if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
-    const getSortKey = (node: FileTrieNode) => {
-      const raw =
-        node.data?.filePath.split("/").pop()?.replace(/\.md$/i, "") ??
-        node.slugSegment ??
-        node.displayName
+    const rawA = (
+      a.data?.filePath.split("/").pop()?.replace(/\.md$/i, "") ??
+      a.slugSegment ??
+      a.displayName
+    ).toLowerCase()
+    const rawB = (
+      b.data?.filePath.split("/").pop()?.replace(/\.md$/i, "") ??
+      b.slugSegment ??
+      b.displayName
+    ).toLowerCase()
 
-      return raw.toLowerCase()
-    }
-
-    return getSortKey(a).localeCompare(getSortKey(b), undefined, {
+    return rawA.localeCompare(rawB, undefined, {
       numeric: true,
       sensitivity: "base",
     })
