@@ -8,8 +8,8 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/jackyzha0/quartz",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
+      GitHub: "https://github.com/6jinfu/quartz",
+      Website: "https://quartz-bw0.pages.dev/",
     },
   }),
 }
@@ -38,11 +38,14 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      title: "文档导航",
+      folderDefaultState: "open",
+    }),
   ],
   right: [
-    Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
+    Component.Graph(),
     Component.Backlinks(),
   ],
 }
@@ -62,7 +65,10 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      title: "文档导航",
+      folderDefaultState: "open",
+    }),
   ],
   right: [],
 }

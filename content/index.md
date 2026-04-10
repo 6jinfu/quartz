@@ -1,19 +1,17 @@
 ---
-title: Home
+title: 文档首页
 ---
 
-# PRD Workspace
+# 文档中心
 
-This Quartz site is ready for product docs, PRDs, and notes.
+这里是当前站点的文档入口页。左侧是文档导航，右侧会根据当前页面自动显示章节目录。
 
-## Start here
+## 当前文档
 
-- Add new Markdown files under `content/`
-- Use folders to group docs by project or team
-- Run the local preview command to review changes before publishing
+- [[Hermes-Agent-中文橙皮书-全集|Hermes Agent 中文橙皮书（单文件总集版）]]
 
-## Suggested structure
+## 使用建议
 
-- `content/prd/feature-a.md`
-- `content/specs/technical-overview.md`
-- `content/meeting-notes/kickoff.md`
+- 新文档直接放在 `content/` 或其子目录下
+- 长文建议按主题拆成多个 Markdown 文件，这样左侧导航会更像官方文档站
+- 更新文档后推送到 `v4` 分支，Cloudflare 会自动重新部署
