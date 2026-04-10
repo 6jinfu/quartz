@@ -2,18 +2,18 @@ import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import { FileTrieNode } from "./quartz/util/fileTrie"
 
-const explorerSortKey = (node: FileTrieNode) => {
-  const raw =
-    node.data?.filePath.split("/").pop()?.replace(/\.md$/i, "") ??
-    node.slugSegment ??
-    node.displayName
-
-  return raw.toLowerCase()
-}
-
 const docsSort = (a: FileTrieNode, b: FileTrieNode) => {
   if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
-    return explorerSortKey(a).localeCompare(explorerSortKey(b), undefined, {
+    const getSortKey = (node: FileTrieNode) => {
+      const raw =
+        node.data?.filePath.split("/").pop()?.replace(/\.md$/i, "") ??
+        node.slugSegment ??
+        node.displayName
+
+      return raw.toLowerCase()
+    }
+
+    return getSortKey(a).localeCompare(getSortKey(b), undefined, {
       numeric: true,
       sensitivity: "base",
     })
