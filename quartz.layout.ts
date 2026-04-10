@@ -62,6 +62,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Explorer({
       title: "文档导航",
       folderDefaultState: "open",
+      folderClickBehavior: "collapse",
       sortFn: docsSort,
     }),
   ],
@@ -90,6 +91,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.Explorer({
       title: "文档导航",
       folderDefaultState: "open",
+      folderClickBehavior: "collapse",
       sortFn: docsSort,
     }),
   ],
