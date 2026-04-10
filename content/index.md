@@ -8,7 +8,7 @@ title: 文档首页
 
 ## 当前文档
 
-- [[Hermes-Agent-中文橙皮书-全集|Hermes Agent 中文橙皮书（单文件总集版）]]
+- [[hermes-orange-book/index|Hermes Agent 中文橙皮书]]
 
 ## 使用建议
 
