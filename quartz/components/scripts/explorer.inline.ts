@@ -209,6 +209,12 @@ async function setupExplorer(currentSlug: FullSlug) {
     const explorerUl = explorer.querySelector(".explorer-ul")
     if (!explorerUl) continue
 
+    for (const child of Array.from(explorerUl.children)) {
+      if (!child.classList.contains("overflow-end")) {
+        child.remove()
+      }
+    }
+
     // Create and insert new content
     const fragment = document.createDocumentFragment()
     for (const child of trie.children) {
@@ -237,6 +243,7 @@ async function setupExplorer(currentSlug: FullSlug) {
       "explorer-toggle",
     ) as HTMLCollectionOf<HTMLElement>
     for (const button of explorerButtons) {
+      button.removeEventListener("click", toggleExplorer)
       button.addEventListener("click", toggleExplorer)
       window.addCleanup(() => button.removeEventListener("click", toggleExplorer))
     }
@@ -247,6 +254,7 @@ async function setupExplorer(currentSlug: FullSlug) {
         "folder-button",
       ) as HTMLCollectionOf<HTMLElement>
       for (const button of folderButtons) {
+        button.removeEventListener("click", toggleFolder)
         button.addEventListener("click", toggleFolder)
         window.addCleanup(() => button.removeEventListener("click", toggleFolder))
       }
@@ -256,6 +264,7 @@ async function setupExplorer(currentSlug: FullSlug) {
       "folder-icon",
     ) as HTMLCollectionOf<HTMLElement>
     for (const icon of folderIcons) {
+      icon.removeEventListener("click", toggleFolder)
       icon.addEventListener("click", toggleFolder)
       window.addCleanup(() => icon.removeEventListener("click", toggleFolder))
     }
