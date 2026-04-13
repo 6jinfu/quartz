@@ -269,8 +269,7 @@ document.addEventListener("prenav", async () => {
   sessionStorage.setItem("explorerScrollTop", explorer.scrollTop.toString())
 })
 
-document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
-  const currentSlug = e.detail.url
+async function handleNav(currentSlug: FullSlug) {
   await setupExplorer(currentSlug)
 
   // if mobile hamburger is visible, collapse by default
@@ -287,6 +286,24 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     }
 
     mobileExplorer.classList.remove("hide-until-loaded")
+  }
+}
+
+document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
+  await handleNav(e.detail.url)
+})
+
+queueMicrotask(async () => {
+  const currentSlug = document.body.dataset.slug as FullSlug | undefined
+  if (!currentSlug) return
+
+  const explorers = document.querySelectorAll(".explorer .explorer-ul")
+  const hasUninitializedExplorer = Array.from(explorers).some((explorer) =>
+    Array.from(explorer.children).every((child) => child.classList.contains("overflow-end")),
+  )
+
+  if (hasUninitializedExplorer) {
+    await handleNav(currentSlug)
   }
 })
 
